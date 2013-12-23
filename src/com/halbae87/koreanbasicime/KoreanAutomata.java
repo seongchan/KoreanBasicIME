@@ -6,7 +6,8 @@
 package com.halbae87.koreanbasicime;
 
 import com.halbae87.koreanbasicime.InputTables;
-import android.util.Log;
+//import android.util.Log;
+import com.halbae87.koreanbasicime.Utils.*;
 
 public class KoreanAutomata {
 	public static int HANGUL_START = 0xAC00;
@@ -260,35 +261,34 @@ public class KoreanAutomata {
 		char newCode = (char) 0;
 
 		if (InputTables.LastConsonants.Code[cIndex1] == 0x3131 && InputTables.LastConsonants.Code[cIndex2] == 0x3145)
-			newCode = 0x3133; // ã„³
-		
+			newCode = 0x3133; //		
 		if (InputTables.LastConsonants.Code[cIndex1] == 0x3142 && InputTables.LastConsonants.Code[cIndex2] == 0x3145)
-			newCode = 0x3144; // ã…„
+			newCode = 0x3144; //
 		
 		if (InputTables.LastConsonants.Code[cIndex1] == 0x3134)
 		{
 			if (InputTables.LastConsonants.Code[cIndex2] == 0x3148)
-				newCode = 0x3135; // ã„µ
+				newCode = 0x3135; // 
 			else if (InputTables.LastConsonants.Code[cIndex2] == 0x314E)
-				newCode = 0x3136; // ã„¶
+				newCode = 0x3136; // 
 		}
 		
 		if (InputTables.LastConsonants.Code[cIndex1] == 0x3139)
 		{
 			if (InputTables.LastConsonants.Code[cIndex2] == 0x3131)
-				newCode = 0x313A; // ã„º
+				newCode = 0x313A; // 
 			else if (InputTables.LastConsonants.Code[cIndex2] == 0x3141)
-				newCode = 0x313B; // ã„»
+				newCode = 0x313B; // 
 			else if (InputTables.LastConsonants.Code[cIndex2] == 0x3142)
-				newCode = 0x313C; // ã„¼ 
+				newCode = 0x313C; //  
 			else if (InputTables.LastConsonants.Code[cIndex2] == 0x3145)
-				newCode = 0x313D; // ã„½
+				newCode = 0x313D; // 
 			else if (InputTables.LastConsonants.Code[cIndex2] == 0x314C)
-				newCode = 0x313E; // ã„¾
+				newCode = 0x313E; // 
 			else if (InputTables.LastConsonants.Code[cIndex2] == 0x314D)
-				newCode = 0x313F; // ã„¿
+				newCode = 0x313F; // 
 			else if (InputTables.LastConsonants.Code[cIndex2] == 0x314E)
-				newCode = 0x3140; // ã…€
+				newCode = 0x3140; // 
 		}
 		
 		if (newCode == (char) 0)
@@ -304,35 +304,35 @@ public class KoreanAutomata {
 		char newCode = (char) 0;
 
 		if (lcCode1 == 0x3131 && lcCode2 == 0x3145)
-			newCode = 0x3133; // ã„³
+			newCode = 0x3133; // 
 		
 		else if (lcCode1 == 0x3142 && lcCode2 == 0x3145)
-			newCode = 0x3144; // ã…„
+			newCode = 0x3144; // 
 		
 		else if (lcCode1 == 0x3134)
 		{
 			if (lcCode2 == 0x3148)
-				newCode = 0x3135; // ã„µ
+				newCode = 0x3135; // 
 			else if (lcCode2 == 0x314E)
-				newCode = 0x3136; // ã„¶
+				newCode = 0x3136; // 
 		}
 		
 		else if (lcCode1 == 0x3139)
 		{
 			if (lcCode2 == 0x3131)
-				newCode = 0x313A; // ã„º
+				newCode = 0x313A; // 
 			else if (lcCode2 == 0x3141)
-				newCode = 0x313B; // ã„»
+				newCode = 0x313B; // 
 			else if (lcCode2 == 0x3142)
-				newCode = 0x313C; // ã„¼ 
+				newCode = 0x313C; //  
 			else if (lcCode2 == 0x3145)
-				newCode = 0x313D; // ã„½
+				newCode = 0x313D; // 
 			else if (lcCode2 == 0x314C)
-				newCode = 0x313E; // ã„¾
+				newCode = 0x313E; // 
 			else if (lcCode2 == 0x314D)
-				newCode = 0x313F; // ã„¿
+				newCode = 0x313F; // 
 			else if (lcCode2 == 0x314E)
-				newCode = 0x3140; // ã…€
+				newCode = 0x3140; // 
 		}
 		
 		return newCode;
@@ -341,28 +341,28 @@ public class KoreanAutomata {
 	public char CombineVowelWithCode(char vCode1, char vCode2)
 	{
 		char newCode = (char) 0;
-		if (vCode1 == 0x3157) // ã…—
+		if (vCode1 == 0x3157) // 
 		{
-			if (vCode2 == 0x314F) // ã…�
-				newCode = 0x3158; // ã…˜
-			else if (vCode2 == 0x3150) // ã…�
-				newCode = 0x3159; // ã…™
-			else if (vCode2 == 0x3163) // ã…£
-				newCode = 0x315A; // ã…š
+			if (vCode2 == 0x314F) // 
+				newCode = 0x3158; // 
+			else if (vCode2 == 0x3150) // 
+				newCode = 0x3159; // 
+			else if (vCode2 == 0x3163) // 
+				newCode = 0x315A; // 
 		}
-		else if (vCode1 == 0x315C) // ã…œ
+		else if (vCode1 == 0x315C) // 
 		{
-			if (vCode2 == 0x3153) // ã…“
-				newCode = 0x315D; // ã…�
-			else if (vCode2 == 0x3154) // ã…”
-				newCode = 0x315E;  // ã…ž
-			else if (vCode2 == 0x3163) // ã…£
-				newCode = 0x315F; // ã…Ÿ
+			if (vCode2 == 0x3153) // 
+				newCode = 0x315D; // 
+			else if (vCode2 == 0x3154) // 
+				newCode = 0x315E;  // 
+			else if (vCode2 == 0x3163) // 
+				newCode = 0x315F; // 
 		}
-		else if (vCode1 == 0x3161) // ã…¡
+		else if (vCode1 == 0x3161) // 
 		{
-			if (vCode2 == 0x3163) // ã…£
-				newCode = 0x3162; // ã…¢
+			if (vCode2 == 0x3163) // 
+				newCode = 0x3162; // 
 		}
 		return newCode;
 	}
@@ -429,7 +429,7 @@ public class KoreanAutomata {
 
 		if (mState != 0 && code == (char) 0)
 		{
-			// Log.v(TAG, "DoBackSpace -- Error. CompositionString is NULL. mState = " + mState);
+			Logs.v("DoBackSpace -- Error. CompositionString is NULL. mState = " + mState);
 			return ACTION_ERROR;
 		}
 
@@ -600,7 +600,7 @@ public class KoreanAutomata {
 
 	public int DoAutomata(char code, int KeyState) // , String CurrentCompositionString)
 	{
-		// Log.v(TAG, "DoAutomata Entered - code = "+ code + " KeyState = " + KeyState + " mState = " + mState);
+		Logs.v("DoAutomata Entered - code = "+ code + " KeyState = " + KeyState + " mState = " + mState);
 		
 		int result = ACTION_NONE;
 		int AlphaIndex = GetAlphabetIndex(code);
@@ -654,7 +654,7 @@ public class KoreanAutomata {
 			{
 				hcode = InputTables.ShiftedKeyMap.Code[AlphaIndex];
 			}
-			// Log.v(TAG, "--DoAutomata() - hcode = " + hcode);
+			Logs.v("--DoAutomata() - hcode = " + hcode);
 			
 			switch (mState)
 			{
@@ -677,7 +677,7 @@ public class KoreanAutomata {
 	
 	private int DoState00(char code) // current composition string: NULL
 	{
-		// Log.v(TAG, "State 0 Entered - code = "+ code );
+		Logs.v("State 0 Entered - code = "+ code );
 		if (IsConsonant(code))
 		{
 			mState = 1;
@@ -694,10 +694,10 @@ public class KoreanAutomata {
 
 	private int DoState01(char code) // current composition string: single consonant only
 	{
-		// Log.v(TAG, "State 1 Entered - code = "+ code );
+		Logs.v("State 1 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 01 -- Error. CompositionString is NULL");
+			Logs.v("DoState 01 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -738,10 +738,10 @@ public class KoreanAutomata {
 
 	private int DoState02(char code) // current composition string: single consonant + single vowel
 	{
-		// Log.v(TAG, "State 2 Entered - code = "+ code );
+		Logs.v("State 2 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState-02 -- Error. CompositionString is NULL");
+			Logs.v("DoState-02 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -796,10 +796,10 @@ public class KoreanAutomata {
 
 	private int DoState03(char code) // current composition string: single consonant + single vowel + single consonant
 	{
-		// Log.v(TAG, "State 3 Entered - code = "+ code );
+		Logs.v("State 3 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 03 -- Error. CompositionString is NULL");
+			Logs.v("DoState 03 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -809,7 +809,7 @@ public class KoreanAutomata {
 			int lcIndex = GetLastConsonantIndex(mCompositionString.charAt(0));
 			if (lcIndex < 0)
 			{
-				// Log.v(TAG, " -- Error. consonant, lcIndex = " + lcIndex);
+				Logs.v(" -- Error. consonant, lcIndex = " + lcIndex);
 				return ACTION_ERROR;
 			}
 			char newCode = CombineLastConsonantWithCode(InputTables.LastConsonants.Code[lcIndex], code);
@@ -836,7 +836,7 @@ public class KoreanAutomata {
 			int lcIndex = GetLastConsonantIndex(mCompositionString.charAt(0));
 			if (lcIndex < 0)
 			{
-				// Log.v(TAG, " -- complete Error. vowel, lcIndex = " + lcIndex);
+				Logs.v(" -- complete Error. vowel, lcIndex = " + lcIndex);
 				return ACTION_ERROR;
 			}
 			char newChar = (char) ((int) mCompositionString.charAt(0) - lcIndex); // remove last consonant and flush it.
@@ -845,7 +845,7 @@ public class KoreanAutomata {
 			int fcIndex = GetFirstConsonantIndex(InputTables.LastConsonants.Code[lcIndex]);
 			if (fcIndex < 0)
 			{
-				// Log.v(TAG, " -- composition Error, vowel, lcIndex = " + lcIndex);
+				Logs.v(" -- composition Error, vowel, lcIndex = " + lcIndex);
 				return ACTION_ERROR;
 			}
 			int vIndex = GetVowelIndex(code);
@@ -860,10 +860,10 @@ public class KoreanAutomata {
 
 	private int DoState04(char code) // current composition string: single vowel
 	{
-		// Log.v(TAG, "State 4 Entered - code = "+ code );
+		Logs.v("State 4 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 04 -- Error. CompositionString is NULL");
+			Logs.v("DoState 04 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -901,10 +901,10 @@ public class KoreanAutomata {
 
 	private int DoState05(char code) // current composition string: a combined vowel
 	{
-		// Log.v(TAG, "State 5 Entered - code = "+ code );
+		Logs.v("State 5 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 05 -- Error. CompositionString is NULL");
+			Logs.v("DoState 05 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -930,10 +930,10 @@ public class KoreanAutomata {
 
 	private int DoState10(char code) // current composition string: a combined consonant
 	{
-		// Log.v(TAG, "State 10 Entered - code = "+ code );
+		Logs.v("State 10 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 10 -- Error. CompositionString is NULL");
+			Logs.v("DoState 10 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -965,10 +965,10 @@ public class KoreanAutomata {
 
 	private int DoState11(char code) // current composition string: single consonant + single vowel + a combined consonant
 	{
-		// Log.v(TAG, "State 11 Entered - code = "+ code );
+		Logs.v("State 11 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 11 -- Error. CompositionString is NULL");
+			Logs.v("DoState 11 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -1003,10 +1003,10 @@ public class KoreanAutomata {
 	
 	private int DoState20(char code) // current composition string: single consonant + a combined vowel
 	{
-		// Log.v(TAG, "State 20 Entered - code = "+ code );
+		Logs.v("State 20 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 20 -- Error. CompositionString is NULL");
+			Logs.v("DoState 20 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -1046,10 +1046,10 @@ public class KoreanAutomata {
 	
 	private int DoState21(char code) // current composition string: single consonant + a combined vowel + single consonant
 	{
-		// Log.v(TAG, "State 21 Entered - code = "+ code );
+		Logs.v("State 21 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 20 -- Error. CompositionString is NULL");
+			Logs.v("DoState 20 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
@@ -1109,10 +1109,10 @@ public class KoreanAutomata {
 
 	private int DoState22(char code) // current composition string: single consonant + a combined vowel + a combined consonant
 	{
-		// Log.v(TAG, "State 22 Entered - code = "+ code );
+		Logs.v("State 22 Entered - code = "+ code );
 		if (mCompositionString == "")
 		{
-			// Log.v(TAG, "DoState 22 -- Error. CompositionString is NULL");
+			Logs.v("DoState 22 -- Error. CompositionString is NULL");
 			return ACTION_ERROR;
 		}
 
