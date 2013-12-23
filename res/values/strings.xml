@@ -33,4 +33,11 @@
     <string name="label_go_key">Go</string>
     <string name="label_next_key">Next</string>
     <string name="label_send_key">Send</string>
+    <string name="pref_title_sw_keyboard">한글키보드 종류</string>
+    <string name="pref_title_hw_keyboard">외장 한글키보드 종류</string>
+    <string name="pref_danmoum">단모음 키보드</string>
+    <string name="pref_dubul">두벌식 키보드</string>
+    <string name="pref_sebul">세벌식 키보드</string>
+    <string name="pref_title_general">일반</string>
+    <string name="pref_titile_etc">기타</string>
 </resources>
