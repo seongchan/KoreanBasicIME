@@ -1,4 +1,4 @@
-/*
+/**
  * Copyright (C) 2008-2009 Google Inc.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
@@ -14,7 +14,7 @@
  * the License.
  */
 
-/*
+/**
  * halbae87: this project is created from Soft Keyboard Sample source
  */
 
