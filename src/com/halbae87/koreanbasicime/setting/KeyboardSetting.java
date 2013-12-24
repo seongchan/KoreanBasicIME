@@ -3,6 +3,8 @@ package com.halbae87.koreanbasicime.setting;
 import com.halbae87.koreanbasicime.R;
 import com.halbae87.koreanbasicime.Utils.Logs;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -29,18 +31,67 @@ public class KeyboardSetting extends PreferenceActivity implements  OnPreference
 		// TODO Auto-generated method stub
 		if (preference.getKey().equals("setting_sw_key")) {
 			Logs.v("soft keyboard setting");
-			Intent intent = new Intent(this, HanKeyboardSettingDialog.class);
-			intent.putExtra(SettingType.HANKEYBOARD, SettingType.SWKEY_SET);
-			startActivityForResult(intent, SettingType.SWKEY_REQUEST_CODE);
+			AlertDialog.Builder dialog = new AlertDialog.Builder(KeyboardSetting.this);
+			String items[] = {getString(R.string.pref_danmoum), getString(R.string.pref_dubul)};
+			int checkedItem = 0;
+			dialog.setTitle(R.string.pref_title_sw_keyboard);
+			
+			dialog
+			.setSingleChoiceItems(items, checkedItem, new selectItem(SettingType.SWKEY_SET))
+			.setNegativeButton(R.string.dialog_btn_no, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					Logs.v("취소버튼 눌렀네");
+				}
+			});
+			
+			dialog.show();
 			
 		} else if (preference.getKey().equals("setting_hw_key")) {
 			Logs.v("hard keyboard setting");
-			Intent intent = new Intent(this, HanKeyboardSettingDialog.class);
-			intent.putExtra(SettingType.HANKEYBOARD, SettingType.HWKEY_SET);
-			startActivityForResult(intent, SettingType.HWKEY_REQUEST_CODE);
+			AlertDialog.Builder dialog = new AlertDialog.Builder(KeyboardSetting.this);
+			String items[] = {getString(R.string.pref_sebul), getString(R.string.pref_dubul)};
+			int checkedItem = 0;
+			dialog.setTitle(R.string.pref_title_hw_keyboard);
+			
+			dialog
+			.setSingleChoiceItems(items, checkedItem, new selectItem(SettingType.HWKEY_SET))
+			.setNegativeButton(R.string.dialog_btn_no, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					Logs.v("취소버튼 눌렀네");
+				}
+			});
+			
+			dialog.show();
 		}
 		return false;
 	}
+	
+
+	public class selectItem implements DialogInterface.OnClickListener {
+
+		int mType;
+		
+		public selectItem(int type) {
+			mType = type;
+		}
+		
+		@Override
+		public void onClick(DialogInterface dialog, int which) {
+			// TODO Auto-generated method stub
+			if (mType == SettingType.SWKEY_SET) {
+				Logs.v("(SW)clicked :"+which);
+			} else if (mType == SettingType.HWKEY_SET) {
+				Logs.v("(HW)clicked :"+which);
+			}
+		}	
+	}
+
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
