@@ -19,10 +19,11 @@
         android:key="setting_etc" 
         android:title="@string/pref_titile_etc"
         >
+        <Preference android:title="test" android:key="test" android:summary="나중에 추가할꺼야"/>
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/pref_titile_license" android:key="setting_license">
-        <Preference android:key="setting_ref_src" android:title="@string/pref_license_1"/>
-        <Preference android:key="setting_open_src" android:title="@string/pref_license_2"/>
+        <Preference android:key="@string/key_license_refsrc" android:title="@string/pref_license_1"/>
+        <Preference android:key="@string/key_license_opensrc" android:title="@string/pref_license_2"/>
     </PreferenceCategory>
     
 

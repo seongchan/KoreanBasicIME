@@ -23,36 +23,43 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 	private Context mContext;
 	private Settings keyboardSetting;
 	private DialogInterface mPopupDlg = null;
+	Preference mMenuSWKeyboard;
+	Preference mMenuHWKeyboard;
+	Preference mMenuRefSrc;
+	Preference mMenuOpenSrc;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.keyboard_setting);
 		
-		Preference swKeyboard = (Preference)findPreference(getText(R.string.key_sw_keyboard));
-		Preference hwKeyboard = (Preference)findPreference(getText(R.string.key_hw_keyboard));
-		Preference refSrc = (Preference)findPreference(getText(R.string.key_license_refsrc));
-		Preference openSrc = (Preference)findPreference(getText(R.string.key_license_opensrc));
+		mMenuSWKeyboard = (Preference)findPreference(getText(R.string.key_sw_keyboard));
+		mMenuHWKeyboard= (Preference)findPreference(getText(R.string.key_hw_keyboard));
+		mMenuRefSrc = (Preference)findPreference(getText(R.string.key_license_refsrc));
+		mMenuOpenSrc = (Preference)findPreference(getText(R.string.key_license_opensrc));
 		
-		swKeyboard.setOnPreferenceClickListener(this);
-		hwKeyboard.setOnPreferenceClickListener(this);
+		mMenuSWKeyboard.setOnPreferenceClickListener(this);
+		mMenuHWKeyboard.setOnPreferenceClickListener(this);
+		mMenuRefSrc.setOnPreferenceClickListener(this);
+		mMenuOpenSrc.setOnPreferenceClickListener(this);
 
 		mContext = this;
 		keyboardSetting = new Settings(mContext);
 		mSWHanKeyboard= keyboardSetting.getHanKeyboard(getString(R.string.key_sw_keyboard));
 		mHWHanKeyboard= keyboardSetting.getHanKeyboard(getString(R.string.key_hw_keyboard));
-		Logs.d("Setting Value(SW)"+mSWHanKeyboard);
-		Logs.d("Setting Value(SW)"+mHWHanKeyboard);
+		
+		setSummarySWKeyboard(mSWHanKeyboard);
+		setSummaryHWKeyboard(mHWHanKeyboard);
 	}
 
 	@Override
 	public boolean onPreferenceClick(Preference preference) {
 		// TODO Auto-generated method stub
-		
+		AlertDialog.Builder dialog = new AlertDialog.Builder(KeyboardSettingPage.this);
 		Logs.d("onPreferenceClick()");
 		if (preference.getKey().equals(getString(R.string.key_sw_keyboard))) {
 			Logs.v("soft keyboard setting");
-			AlertDialog.Builder dialog = new AlertDialog.Builder(KeyboardSettingPage.this);
+			
 			String items[] = {getString(R.string.pref_danmoum), getString(R.string.pref_dubul)};
 			dialog.setTitle(R.string.pref_title_sw_keyboard);
 			
@@ -68,10 +75,10 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 			});
 			
 			mPopupDlg= dialog.show();
+			return true;
 			
 		} else if (preference.getKey().equals(getString(R.string.key_hw_keyboard))) {
 			Logs.v("hard keyboard setting");
-			AlertDialog.Builder dialog = new AlertDialog.Builder(KeyboardSettingPage.this);
 			String items[] = {getString(R.string.pref_sebul), getString(R.string.pref_dubul)};
 			dialog.setTitle(R.string.pref_title_hw_keyboard);
 			
@@ -87,11 +94,23 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 			});
 			
 			mPopupDlg = dialog.show();
+			return true;
+		} else if (preference.getKey().equals(getString(R.string.key_license_refsrc))) {
+			return true;
+		} else if (preference.getKey().equals(getString(R.string.key_license_refsrc))) {
+			return true;
+		} else {
+			return false;
 		}
-		return false;
+		
 	}
 	
 
+	/**
+	 * 
+	 * @author Hong.SeongChan
+	 *
+	 */
 	public class selectItem implements DialogInterface.OnClickListener {
 		
 		String mType;
@@ -102,24 +121,53 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 		
 		@Override
 		public void onClick(DialogInterface dialog, int which) {
-			// TODO Auto-generated method stub
 			keyboardSetting.setHanKeyboard(mType, which);
-			
-			
+		
 			if (mType.equals(getString(R.string.key_sw_keyboard))) {
-				Logs.v("(SW)clicked :"+which);
 				mSWHanKeyboard = which;
+				setSummarySWKeyboard(which);
 			} else if (mType.equals(getString(R.string.key_hw_keyboard))) {
 				mHWHanKeyboard = which;
-				Logs.v("(HW)clicked :"+which);
+				setSummaryHWKeyboard(which);
 			}
-			mPopupDlg.dismiss();
 			
+			mPopupDlg.dismiss();
 		}	
 	} 
+
 	
-	
+	/**
+	 * 키보드 설정값을 세팅한다.
+	 * @param type
+	 * @param value
+	 */
 	public void setKeyboard(String type, int value) {
 		keyboardSetting.setHanKeyboard(type, value);
+	}
+	
+	
+	/**
+	 * 한글키보드 설정값을 summary에 노출한다.
+	 * @param type
+	 */
+	public void setSummarySWKeyboard(int type) {
+		if (mSWHanKeyboard == SettingType.HAN_SW_DANMOUM) {
+			mMenuSWKeyboard.setSummary(getText(R.string.pref_danmoum));
+		} else {
+			mMenuSWKeyboard.setSummary(getText(R.string.pref_dubul));
+		}
+		
+	}
+	
+	/**
+	 * 외장한글키보드 설정값을 summary에 노출한다.
+	 * @param type
+	 */
+	public void setSummaryHWKeyboard(int type) {
+		if (mHWHanKeyboard == SettingType.HAN_HW_SEBUL) {
+			mMenuHWKeyboard.setSummary(getText(R.string.pref_sebul));
+		} else {
+			mMenuHWKeyboard.setSummary(getText(R.string.pref_dubul));
+		}
 	}
  }
