@@ -1,5 +1,7 @@
 package com.halbae87.koreanbasicime.setting;
 
+import com.halbae87.koreanbasicime.R;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -16,8 +18,8 @@ public class Settings {
 	public Settings(Context context) {
 		mContext = context;
 		mPrefs = context.getSharedPreferences("setting", Activity.MODE_PRIVATE);
-		mSWHanKeyboard = mPrefs.getInt(SettingType.SW_HAN_KEYBOARD, SettingType.HAN_SW_DANMOUM);
-		mHWHanKeyboard = mPrefs.getInt(SettingType.HW_HAN_KEYBOARD, SettingType.HAN_HW_SEBUL);
+		mSWHanKeyboard = mPrefs.getInt(mContext.getString(R.string.key_sw_keyboard), SettingType.HAN_SW_DANMOUM);
+		mHWHanKeyboard = mPrefs.getInt(mContext.getString(R.string.key_hw_keyboard), SettingType.HAN_HW_SEBUL);
 		
 	}
 	
@@ -31,7 +33,7 @@ public class Settings {
 	}
 	
 	public int getHanKeyboard(String type) {
-		if (type.equals(SettingType.SW_HAN_KEYBOARD)) {
+		if (type.equals(mContext.getString(R.string.key_sw_keyboard))) {
 			return mSWHanKeyboard;
 		} else {
 			return mHWHanKeyboard;

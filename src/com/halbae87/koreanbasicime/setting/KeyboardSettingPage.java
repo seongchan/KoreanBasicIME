@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
+import android.text.GetChars;
 
 public class KeyboardSettingPage extends PreferenceActivity implements  OnPreferenceClickListener{
 
@@ -28,16 +29,18 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.keyboard_setting);
 		
-		Preference swKeyboard = (Preference)findPreference(SettingType.SW_HAN_KEYBOARD);
-		Preference hwKeyboard = (Preference)findPreference(SettingType.HW_HAN_KEYBOARD);
+		Preference swKeyboard = (Preference)findPreference(getText(R.string.key_sw_keyboard));
+		Preference hwKeyboard = (Preference)findPreference(getText(R.string.key_hw_keyboard));
+		Preference refSrc = (Preference)findPreference(getText(R.string.key_license_refsrc));
+		Preference openSrc = (Preference)findPreference(getText(R.string.key_license_opensrc));
 		
 		swKeyboard.setOnPreferenceClickListener(this);
 		hwKeyboard.setOnPreferenceClickListener(this);
 
 		mContext = this;
 		keyboardSetting = new Settings(mContext);
-		mSWHanKeyboard= keyboardSetting.getHanKeyboard(SettingType.SW_HAN_KEYBOARD);
-		mHWHanKeyboard= keyboardSetting.getHanKeyboard(SettingType.HW_HAN_KEYBOARD);
+		mSWHanKeyboard= keyboardSetting.getHanKeyboard(getString(R.string.key_sw_keyboard));
+		mHWHanKeyboard= keyboardSetting.getHanKeyboard(getString(R.string.key_hw_keyboard));
 		Logs.d("Setting Value(SW)"+mSWHanKeyboard);
 		Logs.d("Setting Value(SW)"+mHWHanKeyboard);
 	}
@@ -47,14 +50,14 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 		// TODO Auto-generated method stub
 		
 		Logs.d("onPreferenceClick()");
-		if (preference.getKey().equals("setting_sw_key")) {
+		if (preference.getKey().equals(getString(R.string.key_sw_keyboard))) {
 			Logs.v("soft keyboard setting");
 			AlertDialog.Builder dialog = new AlertDialog.Builder(KeyboardSettingPage.this);
 			String items[] = {getString(R.string.pref_danmoum), getString(R.string.pref_dubul)};
 			dialog.setTitle(R.string.pref_title_sw_keyboard);
 			
 			dialog
-			.setSingleChoiceItems(items, mSWHanKeyboard, new selectItem(SettingType.SW_HAN_KEYBOARD))
+			.setSingleChoiceItems(items, mSWHanKeyboard, new selectItem(preference.getKey()))
 			.setNegativeButton(R.string.dialog_btn_no, new DialogInterface.OnClickListener() {
 				
 				@Override
@@ -66,14 +69,14 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 			
 			mPopupDlg= dialog.show();
 			
-		} else if (preference.getKey().equals("setting_hw_key")) {
+		} else if (preference.getKey().equals(getString(R.string.key_hw_keyboard))) {
 			Logs.v("hard keyboard setting");
 			AlertDialog.Builder dialog = new AlertDialog.Builder(KeyboardSettingPage.this);
 			String items[] = {getString(R.string.pref_sebul), getString(R.string.pref_dubul)};
 			dialog.setTitle(R.string.pref_title_hw_keyboard);
 			
 			dialog
-			.setSingleChoiceItems(items, mHWHanKeyboard, new selectItem(SettingType.HW_HAN_KEYBOARD))
+			.setSingleChoiceItems(items, mHWHanKeyboard, new selectItem(preference.getKey()))
 			.setNegativeButton(R.string.dialog_btn_no, new DialogInterface.OnClickListener() {
 				
 				@Override
@@ -103,10 +106,10 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 			keyboardSetting.setHanKeyboard(mType, which);
 			
 			
-			if (mType == SettingType.SW_HAN_KEYBOARD) {
+			if (mType.equals(getString(R.string.key_sw_keyboard))) {
 				Logs.v("(SW)clicked :"+which);
 				mSWHanKeyboard = which;
-			} else if (mType == SettingType.HW_HAN_KEYBOARD) {
+			} else if (mType.equals(getString(R.string.key_hw_keyboard))) {
 				mHWHanKeyboard = which;
 				Logs.v("(HW)clicked :"+which);
 			}

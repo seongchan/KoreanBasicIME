@@ -36,6 +36,7 @@
     <string name="pref_title_general">일반</string>
     <string name="pref_title_sw_keyboard">한글키보드 종류</string>
     <string name="pref_title_hw_keyboard">외장 한글키보드 종류</string>
+
     <string name="pref_danmoum">단모음 키보드</string>
     <string name="pref_dubul">두벌식 키보드</string>
     <string name="pref_sebul">세벌식 키보드</string>
@@ -45,4 +46,10 @@
     <string name="pref_license_2">오픈소스</string>
     <string name="dialog_btn_yes">확인</string>
     <string name="dialog_btn_no">취소</string>
+    <string name="key_sw_keyboard">key_sw_key</string>
+    <string name="key_hw_keyboard">key_hw_key</string>
+    <string name="key_license_refsrc">key_license_refsrc</string>
+    <string name="key_license_opensrc">key_license_opensrc</string>    
+    
+    
 </resources>
