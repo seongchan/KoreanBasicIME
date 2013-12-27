@@ -12,11 +12,16 @@
  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
  * License for the specific language governing permissions and limitations under
  * the License.
- */
+ **/
 
 /**
  * halbae87: this project is created from Soft Keyboard Sample source
- */
+ **/
+
+/**
+ * seongchan116@gmail.com : this project is forked from halbae87's "KoreanBasicIME" project
+ * (forked from http://github.com/halbae87/KoreanBasicIME)
+ **/
 
 package com.halbae87.koreanbasicime;
 
@@ -59,8 +64,7 @@ import java.util.List;
 
 @SuppressLint("InlinedApi")
 @SuppressWarnings("unused")
-public class SoftKeyboard extends InputMethodService 
-        implements KeyboardView.OnKeyboardActionListener {
+public class SoftKeyboard extends InputMethodService implements KeyboardView.OnKeyboardActionListener {
     static final boolean DEBUG = false;
     
     /**
