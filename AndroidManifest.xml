@@ -18,7 +18,7 @@
             </intent-filter>
             <meta-data android:name="android.view.im" android:resource="@xml/method" />
         </service>
-        <activity android:name=".setting.KeyboardSetting">
+        <activity android:name=".setting.KeyboardSettingPage">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
             </intent-filter>

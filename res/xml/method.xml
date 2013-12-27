@@ -24,4 +24,4 @@
 <!-- for the Search Manager. -->
 
 <input-method xmlns:android="http://schemas.android.com/apk/res/android"
-    android:settingsActivity="com.halbae87.koreanbasicime.setting.KeyboardSetting" />
+    android:settingsActivity="com.halbae87.koreanbasicime.setting.KeyboardSettingPage" />
