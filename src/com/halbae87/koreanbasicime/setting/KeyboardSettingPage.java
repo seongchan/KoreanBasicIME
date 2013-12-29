@@ -15,7 +15,14 @@ import android.preference.Preference;
 import android.preference.Preference.OnPreferenceClickListener;
 import android.preference.PreferenceActivity;
 import android.text.GetChars;
+import android.webkit.WebView;
 
+
+/**
+ * KeyboardSettingPage Class. 키보드 환경설정 페이지
+ * @author Hong,SeongChan
+ *
+ */
 public class KeyboardSettingPage extends PreferenceActivity implements  OnPreferenceClickListener{
 
 	private int mSWHanKeyboard;
@@ -27,7 +34,7 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 	Preference mMenuHWKeyboard;
 	Preference mMenuRefSrc;
 	Preference mMenuOpenSrc;
-	
+		
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -50,6 +57,8 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 		
 		setSummarySWKeyboard(mSWHanKeyboard);
 		setSummaryHWKeyboard(mHWHanKeyboard);
+
+		mMenuOpenSrc.setSummary("오픈소스에 대해서는 천천히 추가하던지 할께요."); // 오픈소스에 대한 고지 사항용
 	}
 
 	@Override
@@ -88,16 +97,44 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					// TODO Auto-generated method stub
 					Logs.v("취소버튼 눌렀네");
+					mPopupDlg.dismiss();
 				}
 			});
 			
 			mPopupDlg = dialog.show();
 			return true;
 		} else if (preference.getKey().equals(getString(R.string.key_license_refsrc))) {
+			Logs.v("refsrc 팝업");
+			dialog.setTitle(R.string.pref_license_1);		
+			WebView refWebView = new WebView(this);
+			refWebView.loadUrl("file:///android_asset/refsrc_description.html");
+			dialog.setView(refWebView);
+			dialog.setPositiveButton(R.string.dialog_btn_yes, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					mPopupDlg.dismiss();
+				}
+			});
+			mPopupDlg = dialog.show();
+			
 			return true;
-		} else if (preference.getKey().equals(getString(R.string.key_license_refsrc))) {
+		} else if (preference.getKey().equals(getString(R.string.key_license_opensrc))) {
+			Logs.v("opensrc 팝업");
+			dialog
+			.setTitle(R.string.pref_license_2)
+			.setMessage(R.string.pref_license_2)
+			.setPositiveButton(R.string.dialog_btn_yes, new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					mPopupDlg.dismiss();
+				}
+			}); 
+			mPopupDlg = dialog.show();
 			return true;
 		} else {
 			return false;
@@ -106,11 +143,6 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 	}
 	
 
-	/**
-	 * 
-	 * @author Hong.SeongChan
-	 *
-	 */
 	public class selectItem implements DialogInterface.OnClickListener {
 		
 		String mType;
@@ -125,12 +157,11 @@ public class KeyboardSettingPage extends PreferenceActivity implements  OnPrefer
 		
 			if (mType.equals(getString(R.string.key_sw_keyboard))) {
 				mSWHanKeyboard = which;
-				setSummarySWKeyboard(which);
+				setSummarySWKeyboard(mSWHanKeyboard);
 			} else if (mType.equals(getString(R.string.key_hw_keyboard))) {
 				mHWHanKeyboard = which;
-				setSummaryHWKeyboard(which);
+				setSummaryHWKeyboard(mHWHanKeyboard);
 			}
-			
 			mPopupDlg.dismiss();
 		}	
 	} 
